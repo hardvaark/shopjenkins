@@ -1,47 +1,35 @@
 pipeline {
-    agent any
-
+    agent any 
     stages {
-        stage('Checkout') {
+        stage('Static Analysis') {
             steps {
-                // Étape pour récupérer le code depuis un système de contrôle de version (par exemple, Git)
-                git 'git@github.com:hardvaark/shopjenkins.git/oc-testing-java-cours'
+                echo 'Run the static analysis to the code' 
             }
         }
-
-        stage('Build') {
+        stage('Compile') {
             steps {
-                // Étape pour compiler le code et générer le fichier JAR avec Maven
-                sh 'mvn clean install'
+                echo 'Compile the source code' 
             }
         }
-
-        stage('Test') {
+        stage('Security Check') {
             steps {
-                // Étape pour exécuter les tests unitaires avec Maven
-                sh 'mvn test'
+                echo 'Run the security check against the application' 
             }
         }
-
-        stage('Deploy') {
+        stage('Run Unit Tests') {
             steps {
-                // Étape pour déployer le fichier JAR sur le serveur
-                // Vous pouvez modifier cette étape en fonction de votre environnement de déploiement
-                // sh 'scp target/myapp.jar user@server:/path/to/deploy'
-                echo 'En attente de déploiement ...'
+                echo 'Run unit tests from the source code' 
             }
         }
-    }
-
-    post {
-        success {
-            // Étape exécutée si le pipeline réussit
-            echo 'Le pipeline a réussi! Félicitations!'
+        stage('Run Integration Tests') {
+            steps {
+                echo 'Run only crucial integration tests from the source code' 
+            }
         }
-        failure {
-            // Étape exécutée si le pipeline échoue
-            echo 'Le pipeline a échoué. Veuillez vérifier les étapes précédentes.'
+        stage('Publish Artifacts') {
+            steps {
+                echo 'Save the assemblies generated from the compilation' 
+            }
         }
     }
 }
-
