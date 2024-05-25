@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Étape pour récupérer le code depuis un système de contrôle de version (par exemple, Git)
-                git 'git@github.com:hardvaark/shopjenkins.git'
+                git 'git@github.com:hardvaark/shopjenkins.git/oc-testing-java-cours'
             }
         }
 
