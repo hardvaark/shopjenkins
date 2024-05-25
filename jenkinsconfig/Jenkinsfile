@@ -1,35 +1,47 @@
 pipeline {
-    agent any 
+    agent any
+
     stages {
-        stage('Static Analysis') {
+        stage('Checkout') {
             steps {
-                echo 'Run the static analysis to the code' 
+                // Étape pour récupérer le code depuis un système de contrôle de version (par exemple, Git)
+                git 'git@github.com:hardvaark/shopjenkins.git'
             }
         }
-        stage('Compile') {
+
+        stage('Build') {
             steps {
-                echo 'Compile the source code' 
+                // Étape pour compiler le code et générer le fichier JAR avec Maven
+                sh 'mvn clean install'
             }
         }
-        stage('Security Check') {
+
+        stage('Test') {
             steps {
-                echo 'Run the security check against the application' 
+                // Étape pour exécuter les tests unitaires avec Maven
+                sh 'mvn test'
             }
         }
-        stage('Run Unit Tests') {
+
+        stage('Deploy') {
             steps {
-                echo 'Run unit tests from the source code' 
-            }
-        }
-        stage('Run Integration Tests') {
-            steps {
-                echo 'Run only crucial integration tests from the source code' 
-            }
-        }
-        stage('Publish Artifacts') {
-            steps {
-                echo 'Save the assemblies generated from the compilation' 
+                // Étape pour déployer le fichier JAR sur le serveur
+                // Vous pouvez modifier cette étape en fonction de votre environnement de déploiement
+                // sh 'scp target/myapp.jar user@server:/path/to/deploy'
+                echo 'En attente de déploiement ...'
             }
         }
     }
+
+    post {
+        success {
+            // Étape exécutée si le pipeline réussit
+            echo 'Le pipeline a réussi! Félicitations!'
+        }
+        failure {
+            // Étape exécutée si le pipeline échoue
+            echo 'Le pipeline a échoué. Veuillez vérifier les étapes précédentes.'
+        }
+    }
 }
+
