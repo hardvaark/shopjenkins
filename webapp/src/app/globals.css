@@ -1,0 +1,49 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+}
+
+body h1{
+  text-align: center;
+}
+
+#app-content{
+position: relative;
+top: 108px;
+}
+
+#calcForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: auto 42%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#resultValue {
+  color: #007bff;
+}
