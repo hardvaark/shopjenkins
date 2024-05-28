@@ -14,8 +14,8 @@ public class AgeCalculatorController {
     @GetMapping("/age/{birthYear}")
     public int calculateAge(@PathVariable int birthYear) {
         LocalDate today = LocalDate.now();
-        return today.getYear() - birthYear;
-        //return today.getYear() - 2000; // Error scenario
+        //return today.getYear() - birthYear;
+        return today.getYear() - 2000; // Error scenario
     }
 }
 

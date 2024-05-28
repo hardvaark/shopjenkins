@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { fetchData } from "@/app/lib/fetchdata"
+import { fetchdata } from "@/app/lib/fetchdata"
 
 export default function Accueil() {
   const {
@@ -19,7 +19,7 @@ export default function Accueil() {
     //console.log(data)
 
     try {
-      const apiData = await fetchData(
+      const apiData = await fetchdata(
         `http://localhost:9000/age/${data.age.toString()}`
       ) // Replace with your API endpoint
       setResult(apiData)
@@ -62,7 +62,7 @@ export default function Accueil() {
             </div>
           </form>
         </div>
-        <div id="merci">Merci d'avoir suivi cette présentation 🤝</div>
+        {/* <div id="merci">Merci d'avoir suivi cette présentation 🤝</div> */}
       </div>
     </>
   )

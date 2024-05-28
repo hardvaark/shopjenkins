@@ -1,4 +1,4 @@
-export async function fetchData(url) {
+export async function fetchdata(url) {
   const response = await fetch(url)
 
   if (!response.ok) {
