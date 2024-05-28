@@ -28,7 +28,7 @@ export default function Accueil() {
       }
     }
 
-    fetchDataFromApi()
+    //fetchDataFromApi()
     //console.log(data)
     //setFormData(data.age)
     //console.log(formData)
