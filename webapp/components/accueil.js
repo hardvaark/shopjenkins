@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form"
 import { fetchData } from "@/app/lib/fetchdata"
 
 export default function Accueil() {
-  const [result, setResult] = useState(0)
   const {
     register,
     handleSubmit,
@@ -12,25 +11,25 @@ export default function Accueil() {
   } = useForm()
 
   // State
-  const [data, setData] = useState(0) // State for form data
+  const [result, setResult] = useState(0) // State for form data
   const [error, setError] = useState("")
-  const [everyClick, setEveryClick] = useState(0)
 
   // Compute age
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     //console.log(data)
 
-    const result = fetchData(data)
+    try {
+      const apiData = await fetchData(
+        `http://localhost:9000/age/${data.age.toString()}`
+      ) // Replace with your API endpoint
+      setResult(apiData)
+      setError(null)
+    } catch (error) {
+      setError(error.message)
+    }
 
-    console.log(data)
-
-    //fetchDataFromApi()
-    //console.log(data)
-    //setFormData(data.age)
-    //console.log(formData)
+    console.log(result)
   }
-
-  useEffect(() => {}, [everyClick])
 
   return (
     <>
@@ -49,9 +48,21 @@ export default function Accueil() {
             />{" "}
             <br />
             <button type="submit">Calculer</button>
-            <div id="result">Votre âge est :</div>
+            <div id="result">
+              Votre âge est :{" "}
+              {(result < 13 &&
+                `Vous avez ${result} ans, vous êtes un enfant 👶🏻`) ||
+                (result < 18 &&
+                  `Vous avez ${result} ans, vous êtes un adolescent 🧒🏻`) ||
+                (result < 26 &&
+                  `Vous avez ${result} ans, vous êtes un jeune 👩🏻`) ||
+                (result < 45 &&
+                  `Vous avez ${result} ans, vous êtes adulte 🧔🏻‍♂️`) ||
+                (result >= 45 && `Vous avez ${result} ans, vous êtes vieux 👴🏼`)}
+            </div>
           </form>
         </div>
+        <div id="merci">Merci d'avoir suivi cette présentation 🤝</div>
       </div>
     </>
   )

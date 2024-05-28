@@ -1,19 +1,10 @@
-export const fetchData = async (inputValue) => {
-  if (!inputValue) {
-    return false
+export async function fetchData(url) {
+  const response = await fetch(url)
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status} - ${response.statusText}`)
   }
 
-  const url = `http://localhost:9000/age/${inputValue}` // Replace with your API endpoint
-  try {
-    const response = await fetch(url)
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status} - ${response.statusText}`)
-    }
-
-    const apiData = await response.json()
-    return apiData
-  } catch (error) {
-    return false
-  }
+  const data = await response.json()
+  return data
 }

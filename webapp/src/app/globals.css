@@ -43,7 +43,8 @@ button {
 
 #result {
   margin-top: 15px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: initial;
 }
 
 #resultValue {
@@ -53,4 +54,11 @@ button {
 #age{
   width: 302px;
   height: 33px;
+}
+
+#merci{
+  text-align: center;
+  position: relative;
+  top: 50px;
+  font-size: 25px;
 }
