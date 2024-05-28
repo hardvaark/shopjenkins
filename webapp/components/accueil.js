@@ -11,14 +11,27 @@ export default function Accueil() {
   } = useForm()
 
   // State
-  const [formData, setFormData] = useState({ term1: "", term2: "" }) // State for form data
+  const [data, setData] = useState(0) // State for form data
+  const [error, setError] = useState("")
   const [everyClick, setEveryClick] = useState(0)
 
-  // Compute function
+  // Compute age
   const onSubmit = (data) => {
+    console.log(data)
+    const fetchDataFromApi = async () => {
+      try {
+        const apiData = await fetchData("http://localhost:9000/age/2000") // Replace with your API endpoint
+        setData(apiData)
+        console.log(apiData)
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+
+    fetchDataFromApi()
     //console.log(data)
-    setFormData({ ...formData, term1: data.term1, term2: data.term2 })
-    console.log(formData)
+    //setFormData(data.age)
+    //console.log(formData)
   }
 
   useEffect(() => {}, [everyClick])
@@ -26,41 +39,21 @@ export default function Accueil() {
   return (
     <>
       <div id="app-content">
-        <h1>Calculatrice simple</h1>
+        <h1>Quel est votre âge ? 📆 </h1>
         <div id="form-box">
           <form id="calcForm" onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="num1">Terme 1:</label>
+            <label htmlFor="age">Quel est votre année de naissance:</label>
+            <br />
             <input
               type="number"
-              id="num1"
+              id="age"
               name="num1"
               required=""
-              {...register("term1")}
-            />
-            <label htmlFor="operator">Opérateur:</label>
-            <select
-              id="operator"
-              name="operator"
-              required=""
-              {...register("operation")}
-            >
-              <option value="add">+</option>
-              <option value="substraction">-</option>
-              <option value="division">/</option>
-              <option value="multiplication">*</option>
-            </select>
-            <label htmlFor="num2">Terme 2:</label>
-            <input
-              type="number"
-              id="num2"
-              name="num2"
-              required=""
-              {...register("term2")}
-            />
+              {...register("age")}
+            />{" "}
+            <br />
             <button type="submit">Calculer</button>
-            <div id="result">
-              Résultat: <span id="resultValue" />
-            </div>
+            <div id="result">Votre âge est :</div>
           </form>
         </div>
       </div>

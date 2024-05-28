@@ -12,6 +12,7 @@ public class AgeCalculatorController {
     public int calculateAge(@PathVariable int birthYear) {
         LocalDate today = LocalDate.now();
         return today.getYear() - birthYear;
+        //return today.getYear() - 2000; // Error scenario
     }
 }
 

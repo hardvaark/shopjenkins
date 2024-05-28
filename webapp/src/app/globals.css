@@ -16,7 +16,7 @@ top: 108px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: auto 42%;
+  margin: auto 35%;
 }
 
 label {
@@ -37,6 +37,8 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  height: 48px;
+  font-size: 25px;
 }
 
 #result {
@@ -46,4 +48,9 @@ button {
 
 #resultValue {
   color: #007bff;
+}
+
+#age{
+  width: 302px;
+  height: 33px;
 }
