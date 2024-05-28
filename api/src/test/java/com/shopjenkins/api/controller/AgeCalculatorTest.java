@@ -21,7 +21,7 @@ public class AgeCalculatorTest {
 
     @Test
     public void testCalculateAge_PastYearBirth() {
-        int birthYear = 1991;
+        int birthYear = 1990;
         int expectedAge = LocalDate.now().getYear() - birthYear;
         int actualAge = new AgeCalculatorController().calculateAge(birthYear);
         assertEquals(expectedAge, actualAge);
