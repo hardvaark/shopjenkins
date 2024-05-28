@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 
 export default function Accueil() {
@@ -12,6 +12,7 @@ export default function Accueil() {
 
   // State
   const [formData, setFormData] = useState({ term1: "", term2: "" }) // State for form data
+  const [everyClick, setEveryClick] = useState(0)
 
   // Compute function
   const onSubmit = (data) => {
@@ -19,6 +20,8 @@ export default function Accueil() {
     setFormData({ ...formData, term1: data.term1, term2: data.term2 })
     console.log(formData)
   }
+
+  useEffect(() => {}, [everyClick])
 
   return (
     <>
