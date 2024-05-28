@@ -10,6 +10,7 @@ public class ArithmeticOperation {
  }
 
  public double add() {
+	 // Good
      return term1 + term2;
  }
 

@@ -16,7 +16,7 @@ export default function Accueil() {
   // Compute function
   const onSubmit = (data) => {
     //console.log(data)
-    setFormData(...formData, { term1: data.term1, term2: data.term2 })
+    setFormData({ ...formData, term1: data.term1, term2: data.term2 })
     console.log(formData)
   }
 
