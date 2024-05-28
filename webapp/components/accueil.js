@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { fetchData } from "@/app/lib/fetchdata"
 
 export default function Accueil() {
   const [result, setResult] = useState(0)
@@ -17,16 +18,11 @@ export default function Accueil() {
 
   // Compute age
   const onSubmit = (data) => {
+    //console.log(data)
+
+    const result = fetchData(data)
+
     console.log(data)
-    const fetchDataFromApi = async () => {
-      try {
-        const apiData = await fetchData("http://localhost:9000/age/2000") // Replace with your API endpoint
-        setData(apiData)
-        console.log(apiData)
-      } catch (error) {
-        setError(error.message)
-      }
-    }
 
     //fetchDataFromApi()
     //console.log(data)

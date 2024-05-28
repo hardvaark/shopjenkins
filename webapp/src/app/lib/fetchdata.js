@@ -1,10 +1,9 @@
-const fetchData = async (inputValue) => {
+export const fetchData = async (inputValue) => {
   if (!inputValue) {
-    setError("Please enter a value")
-    return
+    return false
   }
 
-  const url = `/api/your-api-endpoint/${inputValue}` // Replace with your API endpoint
+  const url = `http://localhost:9000/age/${inputValue}` // Replace with your API endpoint
   try {
     const response = await fetch(url)
 
@@ -13,9 +12,8 @@ const fetchData = async (inputValue) => {
     }
 
     const apiData = await response.json()
-    setData(apiData)
-    setError(null)
+    return apiData
   } catch (error) {
-    setError(error.message)
+    return false
   }
 }
